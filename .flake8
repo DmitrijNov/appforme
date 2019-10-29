@@ -1,0 +1,5 @@
+[flake8]
+ignore = D203,Q000,Q001,W503,W504
+exclude = .git,__pycache__,.env,venv,*/migrations/*, manage.py, .history, authentication/apps.py
+inline-quotes = "
+builtins = _

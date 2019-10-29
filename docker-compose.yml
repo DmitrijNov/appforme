@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  appforme_pg:
+      image: "kartoza/postgis:9.6-2.4"
+      container_name: appforme_pg
+      hostname: appforme_pg
+      restart: always
+      env_file: "./docker/environments"
+      ports:
+        - "5432:5432"
+      volumes:
+        - ./appforme_pg:/var/lib/postgresql/9.6/main
+
+  appforme_app:
+    container_name: appforme_app
+    hostname: appforme_app
+    restart: always
+    build: ./
+    volumes:
+      - ./core:/appforme_app/core
+      - ./authentication:/appforme_app/authentication
+      - ./users:/appforme_app/users
+      - ./media:/appforme_app/media
+    ports:
+      - "8000:8000"
+    env_file: "./docker/environments"
+    depends_on:
+      - appforme_pg
+
+
+volumes:
+  appforme_pg:
+  pg_backups:
+  media:
