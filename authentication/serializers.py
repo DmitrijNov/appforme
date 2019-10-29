@@ -8,7 +8,8 @@ from rest_framework_simplejwt import serializers as jwt_serializers
 from rest_framework_simplejwt import tokens
 from users import models as user_models
 from core import utils
-import requests
+from rest_framework_simplejwt.serializers import RefreshToken, \
+    TokenObtainSerializer
 
 
 class CustomRefreshToken(tokens.RefreshToken):
@@ -95,7 +96,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(TokenObtainSerializer):
 
     tokens = serializers.SerializerMethodField()
 
@@ -127,12 +128,10 @@ class LoginSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         user = utils.get_or_none(
-            user_models.User, email=attrs['email'], is_invited=False
+            user_models.User, email=attrs['email']
         )
-        if user and user.is_active and user.check_password(attrs['password']):
-            user.is_deleted = False
-            user.deleted_at = None
-            user.save()
+        if user and user.check_password(attrs['password']):
+            return self.get_tokens(user)
         raise serializers.ValidationError('Wrong credentials')
 
     def save(self):

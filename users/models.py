@@ -22,23 +22,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         blank=True, null=True
     )
-
-    is_deleted = models.BooleanField(
-        default=False
-    )
-    is_invited = models.BooleanField(
-        default=False
-    )
-    invitation_date = models.DateTimeField(
-        null=True,
-        blank=True
-    )
-    registration_date = models.DateTimeField(
-        null=True,
-        blank=True
-    )
-    deleted_at = models.DateTimeField(
-        null=True, blank=True
-    )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('full_name',)

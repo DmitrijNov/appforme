@@ -1,25 +1,18 @@
 DB_USER=root
-DB_PASS=collabri_seCur3pwd
-DB_NAME=collabri
-DB_HOST=collabri_pg
+DB_PASS=appforme_seCur3pwd
+DB_NAME=appforme
+DB_HOST=appforme_pg
 
 DB_PORT=5432
 PG_TRUST_LOCALNET=true
 
-POSTGRES_DATABASE=collabri_pg
+POSTGRES_DATABASE=appforme_pg
 POSTGRES_USER=root
-POSTGRES_DB=collabri
-POSTGRES_PASSWORD=collabri_seCur3pwd
+POSTGRES_DB=appforme
+POSTGRES_PASSWORD=appforme_seCur3pwd
 
 PYTHONUNBUFFERED=0
 
-DEBUG=0
+DEBUG=1
 BASE_URL=http://localhost:8000
 FRONT_URL=http://localhost:3000
-
-RABBIT_HOST_NAME=collabri_rabbit
-
-SWAGGER_HOST_URL=http://localhost:8000
-
-MANDRILL_API_KEY=f_bkSfPFtPyL1j3HYd2kmg
-DEFAULT_FROM_EMAIL=noreply@collabri-mch.tk
