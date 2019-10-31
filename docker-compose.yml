@@ -28,8 +28,35 @@ services:
     depends_on:
       - appforme_pg
 
+  app_rabbit:
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"
+    volumes:
+      - ./app_rabbit_data:/var/lib/rabbitmq
+
+  app_socket_service:
+    container_name: app_socket_service
+    hostname: app_socket_service
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile-nodejs
+    volumes:
+      - ./socket_service:/socket_service
+    ports:
+      - "4000:4000"
+    depends_on:
+      - app_rabbit
+      - appforme_app
+    links:
+      - app_rabbit
+      - appforme_app:appforme
 
 volumes:
   appforme_pg:
-  pg_backups:
+  app_rabbit_data:
   media:

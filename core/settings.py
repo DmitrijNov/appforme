@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
     'users',
-    'authentication'
+    'authentication',
+    'chat'
 ]
 
 REST_FRAMEWORK = {

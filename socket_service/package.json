@@ -1,0 +1,30 @@
+{
+  "name": "sockets_service",
+  "version": "1.0.0",
+  "description": "sockets microservice",
+  "main": "server",
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "redis": "^2.8.0",
+    "socket.io": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "nodemon": "^1.17.4"
+  },
+  "scripts": {
+    "dev": "nodemon src --exec \"babel-node server --presets env\"",
+    "server": "babel-node server --presets env",
+    "check": "eslint server/**.js --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
