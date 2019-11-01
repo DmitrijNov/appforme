@@ -14,7 +14,7 @@ collabri_pg_data/
 pg_dumps/
 setuptools-33.1.1.zip
 socket_service/node_modules/
-collabri_rabbit_data/
+app_rabbit_data/
 /setuptools-33.1.1.zip
 celerybeat*
 celerybeat-schedule
