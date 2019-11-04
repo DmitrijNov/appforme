@@ -20,6 +20,7 @@ services:
     volumes:
       - ./core:/appforme_app/core
       - ./authentication:/appforme_app/authentication
+      - ./chat:/appforme_app/chat
       - ./users:/appforme_app/users
       - ./media:/appforme_app/media
     ports:
