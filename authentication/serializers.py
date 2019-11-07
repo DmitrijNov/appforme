@@ -85,7 +85,6 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
-        attrs['registration_date'] = timezone.now()
         return attrs
 
     def save(self):
