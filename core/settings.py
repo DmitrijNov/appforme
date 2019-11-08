@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from django.utils.timezone import timedelta
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,23 +27,15 @@ SECRET_KEY = '1pxrbh9$jrg_glm&yn0hyh9ypc-_&4w&bg$p_bw2m7l+%t)vo-'
 DEBUG = bool(int(os.getenv('DEBUG', '0')))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '10.20.10.164',
-    'appforme',
-]
+ALLOWED_HOSTS = {
+    '*'
+}
 
-CORS_ORIGIN_WHITELIST = (
-    'collabri-dev.scenario-projects.com',
-    'localhost:8000',
-    'localhost',
-    '127.0.0.1',
-    '10.20.10.164:8000',
-    'localhost:3000',
-    'http://localhost:4000',
-    '127.0.0.1:4000',
-    'appforme:8000'
+CORS_ALLOW_HEADERS = default_headers + (
+    'Cache-control',
+    'Pragma',
+    'X-API-KEY',
+    'X-APPMIXER-EMAIL'
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -61,7 +54,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'users',
     'authentication',
-    'chat'
+    'chat',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -77,6 +71,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
