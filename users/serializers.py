@@ -77,10 +77,7 @@ class SimpleUserSerializer(serializers.ModelSerializer):
         model = models.User
         ref_name = None
         fields = (
-            'id', 'email', 'full_name', 'date_of_birth',
-            'profession', 'about',
-            'avatar', 'employee_rate', 'employer_rate',
-            'employee_review_count', 'employer_review_count'
+            'id', 'email', 'full_name', 'avatar'
         )
         extra_kwargs = {
             'employee_rate': {

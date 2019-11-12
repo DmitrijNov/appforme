@@ -11,4 +11,14 @@ class Message(models.Model):
         related_name='received_messages'
     )
     text = models.TextField()
+    is_read = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
 
+
+class MessageAttachment(models.Model):
+    message = models.ForeignKey(
+        'chat.Message', on_delete=models.CASCADE, related_name='attachments'
+    )
+    file = models.FileField(
+        upload_to='message_files'
+    )

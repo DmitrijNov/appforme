@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.contrib.auth.hashers import make_password
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -24,3 +23,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('full_name',)
+
+    class Meta:
+        ordering = ('date_created',)
